@@ -247,15 +247,35 @@ This will generate a coverage report showing:
 
 ## Continuous Integration
 
-Add this to your CI pipeline:
+This project includes GitHub Actions workflows for automated testing. See [CI.md](./CI.md) for detailed information.
+
+### Basic CI Pipeline
 
 ```yaml
+- name: Install dependencies
+  run: npm ci
+
+- name: Lint code
+  run: npm run lint
+
 - name: Run tests
   run: npm run test:run
 
-- name: Run tests with coverage
+- name: Run coverage
   run: npm run test:coverage
+
+- name: Build project
+  run: npm run build
 ```
+
+### Pre-commit Checklist
+
+Before pushing code, ensure:
+
+1. ✅ All tests pass: `npm run test:run`
+2. ✅ Coverage is acceptable: `npm run test:coverage`
+3. ✅ No linting errors: `npm run lint`
+4. ✅ Project builds successfully: `npm run build`
 
 ## Troubleshooting
 
